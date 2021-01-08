@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
-    public function index()
+    private $newsRepository;
+
+    public function __construct()
     {
-        $data = [1, 2, 3,];
+        $this->newsRepository = new NewsRepository();
+    }
+
+    public function index(Request $request)
+    {
+//        dd($request->ip());
+        $news = $this->newsRepository->getAllPublishedWithPaginate(3);
         $title = 'Main page';
-        return view('news.index', ['data' => $data, 'title' => $title]);
+        return view('news.index', ['news' => $news, 'title' => $title]);
     }
 
     public function admin()
