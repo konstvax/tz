@@ -30,7 +30,6 @@ class NewsRepository
         $columns = [
             'id',
             'title',
-            'content',
             'image',
             'is_published',
             'published_at',
@@ -41,6 +40,23 @@ class NewsRepository
             ->where('is_published', 1)
             ->orderBy('id', 'DESC')
             ->paginate($perPage);
+
+        return $result;
+    }
+
+    public function getSingleNews($id)
+    {
+        $columns = [
+            'id',
+            'title',
+            'content',
+            'image',
+            'is_published',
+            'published_at',
+        ];
+
+        $result = $this->news
+            ->find($id);
 
         return $result;
     }

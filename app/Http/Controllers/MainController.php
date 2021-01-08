@@ -5,8 +5,15 @@ namespace App\Http\Controllers;
 use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
 
+/**
+ * Class MainController
+ * @package App\Http\Controllers
+ */
 class MainController extends Controller
 {
+    /**
+     * @var NewsRepository
+     */
     private $newsRepository;
 
     public function __construct()
