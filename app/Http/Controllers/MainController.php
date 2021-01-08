@@ -23,8 +23,8 @@ class MainController extends Controller
 
     public function index(Request $request)
     {
-//        dd($request->ip());
-        $news = $this->newsRepository->getAllPublishedWithPaginate(3);
+//        dd($request);
+        $news = $this->newsRepository->getAllPublishedWithPaginate(3, $request->getRequestUri());
         $title = 'Main page';
         return view('news.index', ['news' => $news, 'title' => $title]);
     }

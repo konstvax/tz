@@ -4,7 +4,6 @@
 namespace App\Repositories;
 
 use App\Models\News;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class NewsRepository
 {
@@ -23,9 +22,10 @@ class NewsRepository
 
     /**
      * @param  null  $perPage
-     * @return LengthAwarePaginator
+     * @param  string|null  $byColumn
+     * @return mixed
      */
-    public function getAllPublishedWithPaginate($perPage = null)
+    public function getAllPublishedWithPaginate($perPage = null, $byColumn = null)
     {
         $columns = [
             'id',
@@ -38,7 +38,7 @@ class NewsRepository
         $result = $this->news
             ->select($columns)
             ->where('is_published', 1)
-            ->orderBy('id', 'DESC')
+            ->orderBy($this->order($byColumn), 'DESC')
             ->paginate($perPage);
 
         return $result;
@@ -59,6 +59,23 @@ class NewsRepository
             ->find($id);
 
         return $result;
+    }
+
+    /**
+     * @param $by
+     * @return string
+     */
+    private function order($by)
+    {
+        $by = trim($by,'/');
+        switch ($by) {
+            case 'by-date':
+                return 'published_at';
+            case 'by-rating':
+                return 'title';
+            default:
+                return 'id';
+        }
     }
 
 

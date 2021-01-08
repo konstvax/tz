@@ -23,6 +23,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController');
 });
 
-Route::get('/', 'MainController@index')->name('news');
+Route::get('/{sortedBy?}', 'MainController@index')->name('news');
 
 Route::get('/news/{id}', 'News\NewsController@index')->name('news.id');

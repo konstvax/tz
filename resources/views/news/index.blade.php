@@ -14,6 +14,10 @@
 
             <div class="album py-5 bg-light">
                 <div class="row">
+                    <div class="col">Sort by:  <a href="{{route('news', 'by-date')}}" class="btn btn-sm btn-warning">Date</a>
+                        <a href="{{route('news', 'by-rating')}}" class="btn btn-sm btn-success">Rating</a></div>
+                </div>
+                <div class="row">
 {{--                    {{dd($news->count() > 0)}}--}}
                     @if($news->count() > 0)
                         @foreach($news as $item)
