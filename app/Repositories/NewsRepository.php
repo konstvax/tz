@@ -44,7 +44,11 @@ class NewsRepository
         return $result;
     }
 
-    public function getSingleNews($id)
+    /**
+     * @param $id
+     * @return News
+     */
+    public function getSingleNews($id): News
     {
         $columns = [
             'id',
@@ -67,7 +71,7 @@ class NewsRepository
      */
     private function order($by)
     {
-        $by = trim($by,'/');
+        $by = trim($by, '/');
         switch ($by) {
             case 'by-date':
                 return 'published_at';

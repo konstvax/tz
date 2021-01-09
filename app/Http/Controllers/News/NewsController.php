@@ -4,6 +4,7 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\NewsRepository;
+use App\Repositories\Services\VisitorViewsService;
 use Illuminate\Http\Request;
 
 /**
@@ -27,13 +28,17 @@ class NewsController extends Controller
 
     /**
      * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @param  Request  $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|void
      */
-    public function index($id)
+    public function index($id, Request $request)
     {
         $single = $this->newsRepository->getSingleNews($id);
-        $title = 'News of '.$single->id;
-//        dd($singleNews->id);
-        return view('news.single', ['news' => $single, 'title' => $title]);
+        if ($single) {
+            VisitorViewsService::scan($request, $single);
+            $title = 'News of '.$single->id;
+            return view('news.single', ['news' => $single, 'title' => $title]);
+        }
+        return abort(404);
     }
 }
