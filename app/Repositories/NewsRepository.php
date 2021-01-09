@@ -78,10 +78,31 @@ class NewsRepository
         switch ($by) {
             case 'by-rating':
                 return 'views';
-            case 'by-date':
+            case 'id':
+                return 'id';
             default:
                 return 'published_at';
         }
+    }
+
+    public function getListOfNewsWithPaginate($perPage = null, $byColumn = null)
+    {
+        $columns = [
+            'id',
+            'title',
+            'views',
+            'is_published',
+            'published_at',
+            'created_at',
+            'updated_at',
+        ];
+
+        $result = $this->news
+            ->select($columns)
+            ->orderBy($this->order($byColumn), 'ASC')
+            ->paginate($perPage);
+
+        return $result;
     }
 
 

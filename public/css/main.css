@@ -1,0 +1,13 @@
+.main {
+    background-color: cornflowerblue;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.hello {
+    color: navajowhite;
+}
+
+a.select:hover {
+    color: cornflowerblue;
+}

@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::group(['prefix' => 'admin'], function () {
-    Route::get('/', 'MainController@admin');
-    Route::resource('/news', 'News\Admin\NewsController');
+    Route::get('/', 'MainController@admin')->name('admin');
+    Route::resource('/news', 'News\Admin\NewsController')->names('admin.news');
     Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController');
 });
 

@@ -3,10 +3,24 @@
 namespace App\Http\Controllers\News\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    /**
+     * @var NewsRepository
+     */
+    private $newsRepository;
+
+    /**
+     * NewsController constructor.
+     */
+    public function __construct()
+    {
+        $this->newsRepository = new NewsRepository();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +28,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return 'hi admin';
+        $newsList = $this->newsRepository->getListOfNewsWithPaginate(8, 'id');
+        return view('admin.news.index', compact('newsList'));
     }
 
     /**

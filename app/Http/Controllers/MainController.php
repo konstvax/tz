@@ -31,6 +31,6 @@ class MainController extends Controller
 
     public function admin()
     {
-        return 'admin panel';
+        return view('admin.main');
     }
 }
