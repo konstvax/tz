@@ -19,7 +19,7 @@
                         </svg>
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <small class="text-muted">9 views</small>
+                                <small class="text-muted">{{$news->views}} views</small>
                                 <small
                                     class="text-muted">{{\Illuminate\Support\Carbon::parse($news->published_at)->format('Y:m:d')}}</small>
                             </div>

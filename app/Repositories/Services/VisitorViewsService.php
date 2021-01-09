@@ -42,11 +42,15 @@ class VisitorViewsService
             $guest->news_id = $newsId;
             $guest->ip_address = $ip;
             $guest->save();
+            $singleNews->views += 1;
+            $singleNews->save();
 //            //increment
             return;
         } else {
             if ($guest->updated_at->addMinutes(1) < Carbon::now()) {
                 $guest->touch();
+                $singleNews->views += 1;
+                $singleNews->save();
                 return;
             }
         }

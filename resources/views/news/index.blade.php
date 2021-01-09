@@ -38,7 +38,7 @@
 {{--                                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>--}}
                                         {{--                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>--}}
                                     </div>
-                                    <small class="text-muted">9 views</small>
+                                    <small class="text-muted">{{$item->views}} views</small>
                                     <small class="text-muted">{{\Illuminate\Support\Carbon::parse($item->published_at)->format('Y:m:d')}}</small>
                                 </div>
                                     </div>

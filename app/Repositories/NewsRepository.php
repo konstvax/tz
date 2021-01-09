@@ -31,6 +31,7 @@ class NewsRepository
             'id',
             'title',
             'image',
+            'views',
             'is_published',
             'published_at',
         ];
@@ -46,21 +47,23 @@ class NewsRepository
 
     /**
      * @param $id
-     * @return News
+     * @return mixed
      */
-    public function getSingleNews($id): News
+    public function getSingleNews($id)
     {
         $columns = [
             'id',
             'title',
             'content',
             'image',
+            'views',
             'is_published',
             'published_at',
         ];
 
         $result = $this->news
-            ->find($id);
+            ->where([['is_published', '=', 1], ['id', '=', $id]])
+            ->first();
 
         return $result;
     }
@@ -69,16 +72,15 @@ class NewsRepository
      * @param $by
      * @return string
      */
-    private function order($by)
+    private function order($by): string
     {
         $by = trim($by, '/');
         switch ($by) {
-            case 'by-date':
-                return 'published_at';
             case 'by-rating':
-                return 'title';
+                return 'views';
+            case 'by-date':
             default:
-                return 'id';
+                return 'published_at';
         }
     }
 
