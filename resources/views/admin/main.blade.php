@@ -6,7 +6,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 mt-4">Go to <a href="{{route('admin.news.index')}}" class="link-danger">News management</a></div>
+        <div class="col-12 mt-4">Go to <a href="{{route('admin.news.index')}}" class="link-danger">News
+                management</a></div>
         <div class="col-12 mt-4">Go to <a href="#" class="link-danger">Guestbook management</a></div>
     </div>
 @endsection

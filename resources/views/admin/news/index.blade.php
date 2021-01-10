@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@include('admin.news.includes.news_management')
 @section('content')
+    @include('admin.news.includes.news_management')
     @php /** @var Illuminate\Pagination\LengthAwarePaginator $newsList */ @endphp
     <div class="row mb-2">
         <div class="col float-end">

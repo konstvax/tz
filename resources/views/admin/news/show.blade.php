@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
-@include('admin.news.includes.news_management')
 @section('content')
+    @include('admin.news.includes.news_management')
     @php
         /**@var \App\Models\News $news */
     @endphp
@@ -84,29 +84,28 @@
                             </div>
 
                             <div class="form-check mt-5">
-                                <label class="form-check-label" for="is_published">Published</label>
-                                <input name="is_published" type="hidden" value="0">
-
                                 <input name="is_published" type="checkbox" class="form-check-input" value="1"
                                        id="is_published"
                                        @if($news->is_published)
                                        checked="checked"
                                     @endif>
+                                <label class="form-check-label" for="is_published">Published</label>
+                                <input name="is_published" type="hidden" value="0">
                             </div>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Edit</button>
                 </form>
             </div>
-            <div class="row">
-                <form method="POST" action="{{route('admin.news.destroy', $news->id)}}">
-                    @method('DELETE')
-                    @csrf
-                    <div class="col">
+            <div class="row mt-1">
+                <div class="col pl-2">
+                    <form method="POST" action="{{route('admin.news.destroy', $news->id)}}">
+                        @method('DELETE')
+                        @csrf
                         <button type="submit" class="btn btn-danger">Delete</button>
-                        <div class="col-md-3"></div>
-                    </div>
-                </form>
+                        {{--                        <div class="col-md-3"></div>--}}
+                    </form>
+                </div>
             </div>
         </div>
     </div>
