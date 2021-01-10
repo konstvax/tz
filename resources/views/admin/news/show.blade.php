@@ -4,6 +4,7 @@
     @php
         /**@var \App\Models\News $news */
     @endphp
+    @include('admin.news.includes.messages')
     <div class="row">
         <div class="col">
             <div class="row">
@@ -84,13 +85,19 @@
                             </div>
 
                             <div class="form-check mt-5">
-                                <input name="is_published" type="checkbox" class="form-check-input" value="1"
-                                       id="is_published"
-                                       @if($news->is_published)
-                                       checked="checked"
-                                    @endif>
-                                <label class="form-check-label" for="is_published">Published</label>
-                                <input name="is_published" type="hidden" value="0">
+                                <div class="row">
+                                    <div class="col">
+                                        <label class="form-check-label" for="is_published">Published</label>
+                                        <input name="is_published" type="hidden" value="0">
+                                    </div>
+                                    <div class="col">
+                                        <input name="is_published" type="checkbox" class="form-check-input" value="1"
+                                               id="is_published"
+                                               @if($news->is_published)
+                                               checked="checked"
+                                            @endif>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

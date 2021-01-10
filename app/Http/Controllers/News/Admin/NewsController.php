@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\News\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\NewsUpdateRequest;
 use App\Repositories\NewsRepository;
 use App\Repositories\Services\UploadService;
 use Illuminate\Http\Request;
@@ -81,21 +82,31 @@ class NewsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  NewsUpdateRequest  $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(NewsUpdateRequest $request, $id)
     {
-
         $news = $this->newsRepository->getEdit($id);
-//        dd(Storage::disk('local')->exists('public/images/ATZy3xMOsLsloLp6psyh6jICGd9FxeLm3Ebwp3MM.png'));
+        if (!$news) {
+            return back()
+                ->withErrors(['msg' => "Record with id={$id} not found"])
+                ->withInput();
+        }
+        $data = $request->all();
         $news->image = UploadService::upload($request, $news);
-        $news->save();
-//        dd(__METHOD__, $request->file('picture'), $request);
-        return view('admin.news.show', compact('news'));
+        $result = $news->update($data);
+
+        if ($result) {
+            return redirect()
+                ->route('admin.news.edit', $news->id)
+                ->with(['success' => 'updated successfully']);
+        } else {
+            return back()
+                ->withErrors(['msg' => 'Save error'])
+                ->withInput();;
+        }
     }
 
     /**
