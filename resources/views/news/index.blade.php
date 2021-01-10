@@ -16,8 +16,8 @@
                 <div class="album py-1 bg-light">
                     <div class="row">
                         <div class="col">Sort by: <a href="{{route('news', 'by-date')}}"
-                                                     class="btn btn-sm btn-warning">Date</a>
-                            <a href="{{route('news', 'by-rating')}}" class="btn btn-sm btn-success">Rating</a></div>
+                                                     class="link-danger">date</a>
+                            <a href="{{route('news', 'by-rating')}}" class="link-danger">views</a></div>
                     </div>
                     <div class="row mt-2">
                         @if($news->count() > 0)

@@ -1,22 +1,4 @@
-{{--<!doctype html>--}}
-{{--<html lang="en">--}}
-{{--    <head>--}}
-{{--        <!-- Required meta tags -->--}}
-{{--        <meta charset="utf-8">--}}
-{{--        <meta name="viewport" content="width=device-width, initial-scale=1">--}}
-{{--        --}}{{--        <link rel="stylesheet" href="css/bootstrap.css">--}}
-{{--        <link rel="stylesheet" href="{{asset('css/bootstrap.css')}}">--}}
-{{--        <link rel="stylesheet" href="{{asset('css/main.css')}}">--}}
-{{--        <title>{{$title ?? ''}}</title>--}}
-{{--    </head>--}}
-{{--    <body>--}}
-{{--        <div class="container">--}}
-{{--            @yield('content')--}}
-{{--        </div>--}}
-{{--        <script src="{{asset('js/bootstrap.js')}}"></script>--}}
-{{--    </body>--}}
-{{--</html>--}}
-    <!doctype html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -25,7 +7,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+{{--        <title>{{ config('app.name', 'Laravel') }}</title>--}}
+        <title>Admin</title>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
@@ -45,7 +28,8 @@
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+{{--                        {{ config('app.name', 'Laravel') }}--}}
+                        Back to site
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"

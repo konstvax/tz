@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/', function () {
 //    return view('welcome');
 //});
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'MainController@admin')->name('admin');
     Route::resource('/news', 'News\Admin\NewsController')->names('admin.news');
     Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController');
