@@ -11,3 +11,11 @@
 a.select:hover {
     color: cornflowerblue;
 }
+#change-picture {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.custom-file {
+    margin-top: 11px;
+}

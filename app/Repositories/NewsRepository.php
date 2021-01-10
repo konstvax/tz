@@ -106,4 +106,10 @@ class NewsRepository
     }
 
 
+    public function getEdit($id)
+    {
+        return $this->news->find($id);
+    }
+
+
 }

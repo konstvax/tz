@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
+@include('admin.news.includes.news_management')
 @section('content')
     @php /** @var Illuminate\Pagination\LengthAwarePaginator $newsList */ @endphp
-    <div class="row main mb-4">
-        <div class="col d-flex justify-content-center">
-            <h4 class="hello"><span class="align-middle">News management</span></h4>
+    <div class="row mb-2">
+        <div class="col float-end">
+            <a href="#" class="btn btn-outline-primary">Create News</a>
         </div>
     </div>
 
@@ -24,7 +25,8 @@
             @foreach($newsList as $news)
                 <tr @if (!$news->is_published) style="background-color: #ccc;" @endif>
                     <th scope="row">{{$news->id}}</th>
-                    <td><a href="#" class="link-dark select">{{$news->title}}</a></td>
+                    <td><a href="{{route('admin.news.edit', $news->id)}}" class="link-dark select">{{$news->title}}</a>
+                    </td>
                     <td>{{$news->views}}</td>
                     <td>@if($news->is_published) yes @else no @endif</td>
                     <td>{{$news->published_at}}</td>

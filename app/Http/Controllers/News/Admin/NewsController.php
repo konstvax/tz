@@ -72,7 +72,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = $this->newsRepository->getEdit($id);
+        return view('admin.news.show', compact('news'));
     }
 
     /**
