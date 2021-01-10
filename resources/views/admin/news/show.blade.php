@@ -13,16 +13,25 @@
                     @csrf
                     <div class="row">
                         <div class="col-2">
-                            {{--                        @if($news->image)--}}
-                            <div>
-                                <img src="{{asset('storage/images/my_photo.jpg')}}" alt="picture" class="img-thumbnail"
-                                     id="change-picture">
-                            </div>
-                            {{--                        @else--}}
-                            <div>
-                                <p style="color: red">Without picture</p>
-                            </div>
-                            {{--                        @endif--}}
+                            @if($news->image)
+                                {{-- public/images/ZxBhZ5Cx5n5OLo7tIk6xVU3ig4bUKgbMy7ASjMIA.jpg--}}
+                                <div>
+                                    <img src="{{asset($news->image)}}"
+                                         alt="picture" class="img-thumbnail"
+                                         id="change-picture">
+                                </div>
+                            @else
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+                                     focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>
+                                        Placeholder</title>
+                                    <rect fill="#55595c" width="100%" height="100%"/>
+                                    <text fill="#eceeef" dy=".3em" x="50%" y="50%">Thumbnail</text>
+                                </svg>
+                                <div>
+                                    <p style="color: red">Without picture</p>
+                                </div>
+                            @endif
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customPicture" name="picture">
                                 <label class="custom-file-label" for="customPicture">Change image...</label>
