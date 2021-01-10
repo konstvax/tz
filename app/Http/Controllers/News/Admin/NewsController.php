@@ -5,6 +5,7 @@ namespace App\Http\Controllers\News\Admin;
 use App\Http\Controllers\Controller;
 use App\Repositories\NewsRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -72,6 +73,9 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
+//        $src = Storage::url('images/my_photo.jpg');
+
+//        dd(Storage::disk('local')->exists('public/images/my_photo.jpg'));
         $news = $this->newsRepository->getEdit($id);
         return view('admin.news.show', compact('news'));
     }
@@ -85,7 +89,7 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__, $request->file('picture'), $request);
     }
 
     /**
@@ -96,6 +100,6 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd(__METHOD__);
     }
 }
