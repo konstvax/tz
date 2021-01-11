@@ -42,30 +42,23 @@
 
             <div class="my-0 pt-0 bg-white rounded">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Visitor reviews</h6>
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <strong class="d-block text-gray-dark">@username</strong>
-                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                    </p>
-                </div>
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <strong class="d-block text-gray-dark">@username</strong>
-                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                    </p>
-                </div>
-                <div class="media text-muted pt-3">
-                    <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                        <strong class="d-block text-gray-dark">@username</strong>
-                        Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo,
-                        tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-                    </p>
-                </div>
 
-                <small class="d-block text-right mt-3">
-                    <a href="#">All updates</a>
+                @php /** @var Illuminate\Pagination\LengthAwarePaginator $users */ @endphp
+                @php /** @var \App\Models\Guestbook $user */ @endphp
+
+                @foreach($users as $user)
+                    <div class="media text-muted pt-3">
+                        <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <strong class="d-block text-gray-dark">{{ $user->username }}</strong>
+                            {{ $user->text }}
+                        </p>
+                    </div>
+                @endforeach
+
+                <small class="d-block float-end text-right mt-3">
+                    @if($users->total() > $users->count())
+                        {{ $users->links() }}
+                    @endif
                 </small>
             </div>
         </main>
