@@ -16,7 +16,7 @@
                 <div class="album py-1 bg-light">
                     <div class="row">
                         <div class="col">Sort by: <a href="{{route('news', 'by-date')}}"
-                                                     class="link-danger">date</a>
+                                                     class="link-danger">date</a>&nbsp; |&nbsp;
                             <a href="{{route('news', 'by-rating')}}" class="link-danger">views</a></div>
                     </div>
                     <div class="row mt-2">

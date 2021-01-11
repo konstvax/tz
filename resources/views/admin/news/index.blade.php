@@ -4,7 +4,7 @@
     @php /** @var Illuminate\Pagination\LengthAwarePaginator $newsList */ @endphp
     <div class="row mb-2">
         <div class="col float-end">
-            <a href="#" class="btn btn-outline-primary">Create News</a>
+            <a href="{{route('admin.news.create')}}" class="btn btn-outline-primary">Create News</a>
         </div>
     </div>
 

@@ -3,7 +3,11 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\News\NewsCreateRequest;
+use App\Http\Requests\News\NewsUpdateRequest;
 use App\Models\News;
+use App\Repositories\Services\UploadService;
+use Carbon\Carbon;
 
 class NewsRepository
 {
@@ -85,6 +89,11 @@ class NewsRepository
         }
     }
 
+    /**
+     * @param  null  $perPage
+     * @param  null  $byColumn
+     * @return mixed
+     */
     public function getListOfNewsWithPaginate($perPage = null, $byColumn = null)
     {
         $columns = [
@@ -105,11 +114,45 @@ class NewsRepository
         return $result;
     }
 
-
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getEdit($id)
     {
         return $this->news->find($id);
     }
 
+    /**
+     * @param $id
+     * @param  NewsUpdateRequest  $request
+     * @return mixed
+     */
+    public function prepareToUpdate($id, NewsUpdateRequest $request)
+    {
+        $data = $request->all();
+        $news = $this->news->find($id);
+        $news->image = UploadService::upload($request, $news);
+        $news->published_at = $data['is_published'] == 1 ? Carbon::now() : null;
 
+        return $news;
+    }
+
+    /**
+     * @param  NewsCreateRequest  $request
+     * @return News
+     */
+    public function createNews(NewsCreateRequest $request)
+    {
+        $data = $request->input();
+        $news = new News();
+        $news->title = $data['title'];
+        $news->content = $data['content'];
+        $news->is_published = isset($data['is_published']) ? (int) $data['is_published'] : 0;
+        $news->image = UploadService::store($request);
+        $news->published_at = $news->is_published == 1 ? Carbon::now() : null;
+        $news->save();
+//        dd($news->is_published, $news->published_at ,$news);
+        return $news;
+    }
 }

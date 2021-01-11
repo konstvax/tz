@@ -3,6 +3,7 @@
 
 namespace App\Repositories\Services;
 
+use App\Http\Requests\News\NewsCreateRequest;
 use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -92,5 +93,18 @@ class UploadService
     private static function getStoredPath(string $pathFromPublic): string
     {
         return str_replace(self::PATH_PUBLIC_DIRECTORY, self::PATH_STORED_DIRECTOR, $pathFromPublic);
+    }
+
+    /**
+     * @param  NewsCreateRequest  $request
+     * @return string|null
+     */
+    public static function store(NewsCreateRequest $request): ?string
+    {
+        $file = $request->file('picture');
+        if ($file) {
+            return self::getStoredPath($file->store('public/images'));
+        }
+        return false;
     }
 }

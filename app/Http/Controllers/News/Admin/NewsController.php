@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\News\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\NewsCreateRequest;
 use App\Http\Requests\News\NewsUpdateRequest;
 use App\Repositories\NewsRepository;
-use App\Repositories\Services\UploadService;
-use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -24,9 +23,7 @@ class NewsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -35,24 +32,27 @@ class NewsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        //
+        return view('admin.news.create');
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  NewsCreateRequest  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(NewsCreateRequest $request)
     {
-        //
+        $news = $this->newsRepository->createNews($request);
+        if ($news) {
+            return redirect()
+                ->route('admin.news.edit', [$news->id])
+                ->with(['success' => 'Successfully created']);
+        }
+        return back()->withErrors(['msg' => 'Save error'])
+            ->withInput();
     }
 
     /**
@@ -67,17 +67,13 @@ class NewsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
     {
-//        $src = Storage::url('images/my_photo.jpg');
-
-//        dd(Storage::disk('local')->exists('public/images/my_photo.jpg'));
         $news = $this->newsRepository->getEdit($id);
+
         return view('admin.news.show', compact('news'));
     }
 
@@ -88,14 +84,13 @@ class NewsController extends Controller
      */
     public function update(NewsUpdateRequest $request, $id)
     {
-        $news = $this->newsRepository->getEdit($id);
+        $news = $this->newsRepository->prepareToUpdate($id, $request);
         if (!$news) {
             return back()
                 ->withErrors(['msg' => "Record with id={$id} not found"])
                 ->withInput();
         }
         $data = $request->all();
-        $news->image = UploadService::upload($request, $news);
         $result = $news->update($data);
 
         if ($result) {
@@ -105,7 +100,7 @@ class NewsController extends Controller
         } else {
             return back()
                 ->withErrors(['msg' => 'Save error'])
-                ->withInput();;
+                ->withInput();
         }
     }
 
