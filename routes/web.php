@@ -26,6 +26,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController');
 });
 
+// guest book
+Route::get('/guestbook', 'GuestBook\GuestBookController@index')->name('guest.index');
+
 Route::get('/{sortedBy?}', 'MainController@index')->name('news');
 
 Route::get('/news/{id}', 'News\NewsController@index')->name('news.id');
