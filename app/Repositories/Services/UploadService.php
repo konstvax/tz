@@ -107,4 +107,9 @@ class UploadService
         }
         return false;
     }
+
+    public static function deleteImage($image)
+    {
+        self::destroyOldPictureIfExists($image);
+    }
 }

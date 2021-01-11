@@ -145,7 +145,7 @@ class NewsRepository
     public function createNews(NewsCreateRequest $request)
     {
         $data = $request->input();
-        $news = new News();
+        $news = $this->news;
         $news->title = $data['title'];
         $news->content = $data['content'];
         $news->is_published = isset($data['is_published']) ? (int) $data['is_published'] : 0;
@@ -154,5 +154,20 @@ class NewsRepository
         $news->save();
 //        dd($news->is_published, $news->published_at ,$news);
         return $news;
+    }
+
+    /**
+     * @param $id
+     * @return bool|null
+     */
+    public function forceDelete($id): ? bool
+    {
+        $result = $this->news->find($id);
+
+        if ($result) {
+            UploadService::deleteImage($result->image);
+            return $result->forceDelete();
+        }
+        return null;
     }
 }
