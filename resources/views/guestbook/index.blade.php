@@ -9,37 +9,9 @@
                 </div>
             </section>
         </main>
+        @include('guestbook.includes.messages')
         <main role="main" class="container">
-            <form>
-                <div class="row">
-                    <div class="col-3">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="name" value="" placeholder="your name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" value="" placeholder="username@example.com">
-                        </div>
-                    </div>
-                    <div class="col-9">
-                        <div class="mb-3">
-                            <label for="exampleFormControlTextarea1" class="form-label">Your comment</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Some comment.."></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col text-right">
-                        <div class="mb-1 form-check">
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </div>
-
-                    </div>
-
-                </div>
-            </form>
-
+            @include('guestbook.includes.form-guestbook')
             <div class="my-0 pt-0 bg-white rounded">
                 <h6 class="border-bottom border-gray pb-2 mb-0">Visitor reviews</h6>
 

@@ -16,7 +16,7 @@ class CreateGuestbooksTable extends Migration
         Schema::create('guestbooks', function (Blueprint $table) {
             $table->id();
             $table->string('username');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->text('text');
             $table->boolean('is_published')->default(false);
             $table->timestamps();
