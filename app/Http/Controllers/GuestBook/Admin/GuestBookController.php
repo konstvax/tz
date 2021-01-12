@@ -3,18 +3,31 @@
 namespace App\Http\Controllers\GuestBook\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\GuestbookRepository;
 use Illuminate\Http\Request;
 
 class GuestBookController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @var GuestbookRepository
+     */
+    private $guestBookRepository;
+
+    /**
+     * GuestBookController constructor.
+     */
+    public function __construct()
+    {
+        $this->guestBookRepository = new GuestbookRepository();
+    }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $commentsList = $this->guestBookRepository->getListOfComment(8);
+        return view('admin.guestbook.index', compact('commentsList'));
     }
 
     /**

@@ -57,4 +57,15 @@ class GuestbookRepository
         return $result;
     }
 
+    /**
+     * @param  null  $perPage
+     * @return mixed
+     */
+    public function getListOfComment($perPage = null)
+    {
+        return $this->guestbook
+            ->select('*')
+            ->orderBy('is_published', 'ASC')
+            ->paginate($perPage);
+    }
 }

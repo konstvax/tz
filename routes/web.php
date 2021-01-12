@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'MainController@admin')->name('admin');
     Route::resource('/news', 'News\Admin\NewsController')->names('admin.news');
-    Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController');
+    Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController')->names('admin.guestbook');
 });
 
 // guest book

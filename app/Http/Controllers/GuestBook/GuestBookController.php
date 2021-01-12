@@ -8,7 +8,7 @@ use App\Repositories\GuestbookRepository;
 
 class GuestBookController extends Controller
 {
-    private $guestbookRepository;
+    private $guestBookRepository;
 
     public function __construct()
     {
@@ -17,7 +17,7 @@ class GuestBookController extends Controller
 
     public function index()
     {
-        $users = $this->guestbookRepository->getAllPublishedWithPaginate(2);
+        $users = $this->guestBookRepository->getAllPublishedWithPaginate(2);
         return view('guestbook.index', compact('users'));
     }
 
@@ -27,7 +27,7 @@ class GuestBookController extends Controller
      */
     public function store(GuestbookCreateRequest $request)
     {
-        $saveMessage = $this->guestbookRepository->createCommentAndSave($request);
+        $saveMessage = $this->guestBookRepository->createCommentAndSave($request);
         if ($saveMessage) {
             return redirect()
                 ->route('guest.index')
