@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Http\Requests\Guestbook\GuestbookCreateRequest;
+use App\Http\Requests\Guestbook\GuestbookUpdateRequest;
 use App\Models\Guestbook;
 
 class GuestbookRepository
@@ -74,6 +75,16 @@ class GuestbookRepository
      * @return mixed
      */
     public function getCommentToEdit($id)
+    {
+        return $this->guestbook->find($id);
+    }
+
+    /**
+     * @param  GuestbookUpdateRequest  $request
+     * @param $id
+     * @return Guestbook|null
+     */
+    public function prepareToUpdateComment(GuestbookUpdateRequest $request, $id): ?Guestbook
     {
         return $this->guestbook->find($id);
     }

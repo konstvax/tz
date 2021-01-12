@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\GuestBook\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Guestbook\GuestbookUpdateRequest;
 use App\Repositories\GuestbookRepository;
 use Illuminate\Http\Request;
 
@@ -75,15 +76,30 @@ class GuestBookController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  GuestbookUpdateRequest  $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(GuestbookUpdateRequest $request, $id)
     {
-        dd(__METHOD__);
+        $data = $request->all();
+        $comment = $this->guestBookRepository->prepareToUpdateComment($request, $id);
+        if (!$comment) {
+            return back()
+                ->withErrors(['msg' => "Comment with id=$id not foud"])
+                ->withInput();
+        }
+
+        $result = $comment->update($data);
+
+        if ($comment) {
+            return redirect()
+                ->route('admin.guestbook.edit', $comment->id)
+                ->with(['success' => 'Updated successfully']);
+        }
+        return back()
+            ->withErrors(['msg' => 'Update error'])
+            ->withInput();
     }
 
     /**
@@ -94,6 +110,6 @@ class GuestBookController extends Controller
      */
     public function destroy($id)
     {
-        //
+        dd(__METHOD__);
     }
 }

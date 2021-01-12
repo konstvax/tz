@@ -6,15 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Guestbook\GuestbookCreateRequest;
 use App\Repositories\GuestbookRepository;
 
+/**
+ * Class GuestBookController
+ * @package App\Http\Controllers\GuestBook
+ */
 class GuestBookController extends Controller
 {
+    /**
+     * @var GuestbookRepository
+     */
     private $guestBookRepository;
 
+    /**
+     * GuestBookController constructor.
+     */
     public function __construct()
     {
-        $this->guestbookRepository = new GuestbookRepository();
+        $this->guestBookRepository = new GuestbookRepository();
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $users = $this->guestBookRepository->getAllPublishedWithPaginate(2);
