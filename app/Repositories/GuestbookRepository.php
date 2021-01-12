@@ -68,4 +68,13 @@ class GuestbookRepository
             ->orderBy('is_published', 'ASC')
             ->paginate($perPage);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCommentToEdit($id)
+    {
+        return $this->guestbook->find($id);
+    }
 }

@@ -70,7 +70,8 @@ class GuestBookController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comment = $this->guestBookRepository->getCommentToEdit($id);
+        return view('admin.guestbook.show', compact('comment'));
     }
 
     /**
@@ -82,7 +83,7 @@ class GuestBookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
