@@ -86,7 +86,7 @@ class GuestBookController extends Controller
         $comment = $this->guestBookRepository->prepareToUpdateComment($request, $id);
         if (!$comment) {
             return back()
-                ->withErrors(['msg' => "Comment with id=$id not foud"])
+                ->withErrors(['msg' => "Comment with id=$id not found"])
                 ->withInput();
         }
 
@@ -103,13 +103,18 @@ class GuestBookController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        dd(__METHOD__);
+        $result = $this->guestBookRepository->forceDelete($id);
+
+        if ($result) {
+            return redirect()
+                ->route('admin.guestbook.index')
+                ->with(['success' => "Comment id =  $id successfully deleted"]);
+        }
+        return back()->withErrors(['msg' => 'Deleting error']);
     }
 }

@@ -88,4 +88,18 @@ class GuestbookRepository
     {
         return $this->guestbook->find($id);
     }
+
+    /**
+     * @param $id
+     * @return bool|null
+     */
+    public function forceDelete($id): ?bool
+    {
+        $comment = $this->guestbook->find($id);
+        if ($comment) {
+            return $comment->forceDelete();
+        }
+        return null;
+    }
+
 }

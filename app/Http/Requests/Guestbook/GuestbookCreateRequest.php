@@ -36,7 +36,7 @@ class GuestbookCreateRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.regex' => 'The username only consist of symbols of the Latin alphabet and numbers',
+            'username.regex' => 'The username can only consist of symbols of the Latin alphabet and numbers',
             'text.regex' => 'The text should not contain HTML entities',
         ];
 

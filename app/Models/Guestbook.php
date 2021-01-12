@@ -8,9 +8,9 @@ class Guestbook extends Model
 {
 
     protected $fillable = [
-//        'username',
+        'username',
         'text',
-//        'email',
+        'email',
         'is_published',
     ];
 }
