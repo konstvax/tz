@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 // guest book
 Route::get('/guestbook', 'GuestBook\GuestBookController@index')->name('guest.index');
 
+Route::get('/reload-captcha', 'GuestBook\GuestBookController@reloadCaptcha');
+
 Route::post('/guestbook', 'GuestBook\GuestBookController@store')->name('guestbook.store');
 
 Route::get('/{sortedBy?}', 'MainController@index')->name('news');

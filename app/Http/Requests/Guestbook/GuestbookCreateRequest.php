@@ -27,6 +27,7 @@ class GuestbookCreateRequest extends FormRequest
             'username' => 'required|min:5|max:20|regex:/^[a-zA-Z0-9]+$/',
             'email' => 'required|email',
             'text' => 'required|string|min:10|max:1000|regex:/^([^<>])+$/',
+            'captcha' => 'required|captcha',
         ];
     }
 
@@ -38,6 +39,7 @@ class GuestbookCreateRequest extends FormRequest
         return [
             'username.regex' => 'The username can only consist of symbols of the Latin alphabet and numbers',
             'text.regex' => 'The text should not contain HTML entities',
+            'captcha.captcha' => 'The captcha you entered is incorrect',
         ];
 
     }

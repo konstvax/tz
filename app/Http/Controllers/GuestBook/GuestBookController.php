@@ -52,4 +52,12 @@ class GuestBookController extends Controller
         return back()->withErrors(['msg' => 'Save error'])
             ->withInput();
     }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function reloadCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img()]);
+    }
 }
