@@ -108,6 +108,9 @@ class UploadService
         return false;
     }
 
+    /**
+     * @param string $image
+     */
     public static function deleteImage($image)
     {
         self::destroyOldPictureIfExists($image);

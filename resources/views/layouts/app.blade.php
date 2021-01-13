@@ -45,12 +45,11 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        <a href="{{ route('guest.index') }}">GUESTBOOK</a>
+                        <a class="navbar-brand" href="{{ route('guest.index') }}">Guestbook</a>
                     </ul>
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>

@@ -2,5 +2,6 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/captcha.js": "/js/captcha.js",
+    "/js/image.js": "/js/image.js",
     "/js/popper.js": "/js/popper.js"
 }

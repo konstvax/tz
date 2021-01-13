@@ -8,6 +8,7 @@ use App\Repositories\GuestbookRepository;
 
 /**
  * Class GuestBookController
+ *
  * @package App\Http\Controllers\GuestBook
  */
 class GuestBookController extends Controller

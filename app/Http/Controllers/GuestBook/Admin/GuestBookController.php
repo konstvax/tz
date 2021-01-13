@@ -5,8 +5,12 @@ namespace App\Http\Controllers\GuestBook\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Guestbook\GuestbookUpdateRequest;
 use App\Repositories\GuestbookRepository;
-use Illuminate\Http\Request;
 
+/**
+ * Class GuestBookController
+ *
+ * @package App\Http\Controllers\GuestBook\Admin
+ */
 class GuestBookController extends Controller
 {
     /**
@@ -29,38 +33,6 @@ class GuestBookController extends Controller
     {
         $commentsList = $this->guestBookRepository->getListOfComment(8);
         return view('admin.guestbook.index', compact('commentsList'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

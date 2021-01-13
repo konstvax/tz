@@ -20,19 +20,26 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'MainController@admin')->name('admin');
-    Route::resource('/news', 'News\Admin\NewsController')->names('admin.news');
-    Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController')->names('admin.guestbook');
+    Route::resource('/news', 'News\Admin\NewsController')
+        ->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])
+        ->names('admin.news');
+    Route::resource('/guest-book', 'GuestBook\Admin\GuestBookController')
+        ->only(['index', 'edit', 'update', 'destroy'])
+        ->names('admin.guestbook');
 });
 
-// guest book
+
+// guestbook
 Route::get('/guestbook', 'GuestBook\GuestBookController@index')->name('guest.index');
 
 Route::get('/reload-captcha', 'GuestBook\GuestBookController@reloadCaptcha');
 
 Route::post('/guestbook', 'GuestBook\GuestBookController@store')->name('guestbook.store');
 
+//news
 Route::get('/{sortedBy?}', 'MainController@index')->name('news');
 
 Route::get('/news/{id}', 'News\NewsController@index')->name('news.id');

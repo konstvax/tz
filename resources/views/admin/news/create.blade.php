@@ -12,6 +12,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-4">
+
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="customPicture" name="picture">
                                 <label class="custom-file-label" for="customPicture">Add image</label>

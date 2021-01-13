@@ -21,6 +21,8 @@
                     </div>
                     <div class="row mt-2">
                         @if($news->count() > 0)
+                            @php /** @var \Illuminate\Pagination\LengthAwarePaginator $news */ @endphp
+                            @php /** @var App\Models\News $item */ @endphp
                             @foreach($news as $item)
                                 <div class="col-md-4">
                                     <div class="card mb-4 shadow-sm">
@@ -28,14 +30,8 @@
                                             @if($item->image)
                                                 <img src="{{asset($item->image)}}" alt="{{$item->title}}" height="280">
                                             @else
-                                                <svg class="bd-placeholder-img card-img-top" width="100%" height="280"
-                                                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
-                                                     focusable="false" role="img" aria-label="Placeholder: Thumbnail">
-                                                    <title>
-                                                        Placeholder</title>
-                                                    <rect fill="#55595c" width="100%" height="100%"></rect>
-                                                    <text fill="#eceeef" dy=".3em" x="50%" y="50%">No image</text>
-                                                </svg>
+                                                <img src="{{asset('storage/images/default.png')}}"
+                                                     alt="{{$item->title}}" height="280">
                                             @endif
                                         </div>
                                         <div class="card-body">
@@ -47,7 +43,7 @@
                                                 </div>
                                                 <small class="text-muted">{{$item->views}} views</small>
                                                 <small
-                                                    class="text-muted">{{\Illuminate\Support\Carbon::parse($item->published_at)->format('Y:m:d')}}</small>
+                                                    class="text-muted">{{ $item->getCreatedAt('Y:m:d') }}</small>
                                             </div>
                                         </div>
                                     </div>

@@ -7,6 +7,11 @@ use App\Http\Requests\Guestbook\GuestbookCreateRequest;
 use App\Http\Requests\Guestbook\GuestbookUpdateRequest;
 use App\Models\Guestbook;
 
+/**
+ * Class GuestbookRepository
+ *
+ * @package App\Repositories
+ */
 class GuestbookRepository
 {
     /**

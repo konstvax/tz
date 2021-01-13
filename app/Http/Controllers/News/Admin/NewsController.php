@@ -7,6 +7,11 @@ use App\Http\Requests\News\NewsCreateRequest;
 use App\Http\Requests\News\NewsUpdateRequest;
 use App\Repositories\NewsRepository;
 
+/**
+ * Class NewsController
+ *
+ * @package App\Http\Controllers\News\Admin
+ */
 class NewsController extends Controller
 {
     /**
@@ -53,17 +58,6 @@ class NewsController extends Controller
         }
         return back()->withErrors(['msg' => 'Save error'])
             ->withInput();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

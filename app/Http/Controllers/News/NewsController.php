@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 /**
  * Class NewsController
+ *
  * @package App\Http\Controllers\News
  */
 class NewsController extends Controller

@@ -9,6 +9,11 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Models\Guest;
 
+/**
+ * Class VisitorViewsService
+ *
+ * @package App\Repositories\Services
+ */
 class VisitorViewsService
 {
 
@@ -44,7 +49,6 @@ class VisitorViewsService
             $guest->save();
             $singleNews->views += 1;
             $singleNews->save();
-//            //increment
             return;
         } else {
             if ($guest->updated_at->addMinutes(1) < Carbon::now()) {

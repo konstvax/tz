@@ -11,6 +11,6 @@ class GuestBookSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\Guestbook::class, 20)->create();
+//        factory(\App\Models\Guestbook::class, 20)->create();
     }
 }

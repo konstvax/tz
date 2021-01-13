@@ -9,6 +9,11 @@ use App\Models\News;
 use App\Repositories\Services\UploadService;
 use Carbon\Carbon;
 
+/**
+ * Class NewsRepository
+ *
+ * @package App\Repositories
+ */
 class NewsRepository
 {
     /**
@@ -152,7 +157,6 @@ class NewsRepository
         $news->image = UploadService::store($request);
         $news->published_at = $news->is_published == 1 ? Carbon::now() : null;
         $news->save();
-//        dd($news->is_published, $news->published_at ,$news);
         return $news;
     }
 
