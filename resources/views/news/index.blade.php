@@ -43,7 +43,7 @@
                                                 </div>
                                                 <small class="text-muted">{{$item->views}} views</small>
                                                 <small
-                                                    class="text-muted">{{ $item->getCreatedAt('Y:m:d') }}</small>
+                                                    class="text-muted">{{ $item->getCreatedAt() }}</small>
                                             </div>
                                         </div>
                                     </div>
